@@ -5,8 +5,8 @@ using System.Globalization;
 namespace SR.Tree {
     public class Settings {
 
-        public int qtyTriangles, qtyDecorators,width;
-        public string msgCongrats, msgSecondary;
+        public int qtyDecorators, rowTree, timeRedraw;
+        public string treeChar, decorChar, msgCongrats, msgSecondary, colorTree, colorCongrats, colorSecondary;
 
         /// <summary></summary>
         /// <param name="pathSettings">Este parámetro indica la ruta en la que
@@ -22,14 +22,29 @@ namespace SR.Tree {
                 if(!set.StartsWith('#')){
                     string[] paramsSet = set.Split('=');
                     switch(paramsSet[0].Trim()){
-                        case "Quantity Triangles":
-                            qtyTriangles = int.Parse(paramsSet[1]?.Trim(), CultureInfo.InvariantCulture);
-                            break;
                         case "Quantity Decorations":
                             qtyDecorators = int.Parse(paramsSet[1]?.Trim(), CultureInfo.InvariantCulture);
                             break;
-                        case "Width":
-                            width = int.Parse(paramsSet[1]?.Trim(), CultureInfo.InvariantCulture);
+                        case "Rows On Tree":
+                            rowTree = int.Parse(paramsSet[1]?.Trim(), CultureInfo.InvariantCulture);
+                            break;
+                        case "Time Wait Redraw":
+                            timeRedraw = int.Parse(paramsSet[1]?.Trim(), CultureInfo.InvariantCulture);
+                            break;
+                        case "Tree Character":
+                            treeChar = paramsSet[1]?.Trim();
+                            break;
+                        case "Decorations Character":
+                            decorChar = paramsSet[1]?.Trim();
+                            break;
+                        case "Color MSG Congrats":
+                            colorCongrats = paramsSet[1]?.Trim();
+                            break;
+                        case "Color MSG Secondary":
+                            colorSecondary = paramsSet[1]?.Trim();
+                            break;
+                        case "Color Tree":
+                            colorTree = paramsSet[1]?.Trim();
                             break;
                         case "MSG Congrats":
                             msgCongrats = paramsSet[1]?.Trim();
