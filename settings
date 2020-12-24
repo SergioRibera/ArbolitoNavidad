@@ -1,5 +1,13 @@
-Quantity Triangles = 6
-Quantity Decorations = 4
-Width = 5
+# Esta Variable indica la cantidad de lineas de * que deben haber
+Rows On Tree = 35
+# Indica la cantidad de Objetos decorativos que debe haber
+Quantity Decorations = 30
 MSG Congrats = Feliz Navidad 2020
-MSG Secondary = Y Feliz Año Nuevo
+MSG Secondary = Y Prospero Año Nuevo
+
+Time Wait Redraw = 360
+Tree Character = *
+Decorations Character = o
+Color MSG Congrats = Red
+Color MSG Secondary = Yellow
+Color Tree = Green
