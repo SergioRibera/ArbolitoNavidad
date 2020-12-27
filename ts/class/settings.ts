@@ -1,5 +1,5 @@
 import { resolve } from 'https://raw.githubusercontent.com/halvardssm/deno-path/master/mod.ts';
-import fs from 'fs';
+import { existsSync } from "https://deno.land/std@0.82.0/fs/mod.ts";
 
 export class Settings{
     // Numeros
@@ -17,7 +17,7 @@ export class Settings{
 
     public loadSettings(pathSettings: string): void {
         pathSettings = resolve(pathSettings, 'settings');
-        if(!fs.existsSync(pathSettings))
+        if(!existsSync(pathSettings))
         throw new Error("This path to file is invalid");
         let txtSettingsFile = Deno.readTextFile(pathSettings);
         txtSettingsFile.then(txtSettings => {

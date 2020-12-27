@@ -1,10 +1,10 @@
-import * as Colors from "https://deno.land/std/fmt/colors.ts";
-import { sleep } from "https://deno.land/x/sleep/mod.ts";
+import { Colors } from './class/colors.ts';
 import { Settings } from './class/settings.ts';
 import { RandomUtils } from './class/SR.ts';
 
 const PATH_SETTINGS: string = "../";
 const settings: Settings = new Settings();
+const colors = new Colors();
 
 function countAsteriscs(count: number): number{
     let result: number = 0;
@@ -16,38 +16,36 @@ function countAsteriscs(count: number): number{
 let colorDecorators: Array<string> = new Array<string>("green", "red", "yellow", "blue");
 let posDecorations: Array<number>;
 
-async function Main(): Promise<void> {
-    settings.loadSettings(PATH_SETTINGS);
-    posDecorations = RandomUtils.generateRandom(settings.qtyDecorators, 0, countAsteriscs(settings.rowTree));
-    while(true){
-        DrawTree();
-        DrawMsg();
-        await sleep(settings.timeRedraw);
-    }
-}
 function DrawTree(): void{
     console.clear();
     let pos:number = 0;
-
+    let res: string = "";
     for (let a:number = 0; a < settings.rowTree; a++) {
         for (let b: number = 0; b < settings.rowTree - a - 1; b++)
-            console.log(" ");
+            res += " ";
         for (let b: number = settings.rowTree - a - 1; b < settings.rowTree + a; b++){
             if(posDecorations.includes(pos)) {
                 let func = colorDecorators[RandomUtils.random(0, colorDecorators.length - 1)];
-                let txt: string = (Colors["blue"])(settings.decorChar);
-                console.log(txt);
+                res += (colors["red"])(settings.decorChar);
+                //eval(`res += Colors[${func}](settings.decorChar)`);
             } else {
-                console.log(Colors["green"](settings.treeChar));
+                //eval(`${res} += ${Colors}[${settings.colorTree}](${settings.decorChar})`);
+                res += colors["green"](settings.treeChar);
             }
             pos++;
         }
-        console.log("\n");
+        console.log(res);
     }
 }
 function DrawMsg(): void{
-    console.log("\n");
-    console.log(Colors["red"](settings.msgCongrats));
-    console.log(Colors["yellow"](settings.msgSecondary));
+    console.log(settings.msgCongrats);
+    console.log(settings.msgSecondary);
 }
-Main();
+(() => {
+    settings.loadSettings(PATH_SETTINGS);
+    posDecorations = RandomUtils.generateRandom(settings.qtyDecorators, 0, countAsteriscs(settings.rowTree));
+    setInterval(() => {
+        DrawTree();
+        DrawMsg();
+    }, settings.timeRedraw);
+})();

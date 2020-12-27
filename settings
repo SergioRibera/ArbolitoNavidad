@@ -1,7 +1,7 @@
 # Esta Variable indica la cantidad de lineas de * que deben haber
-Rows On Tree = 35
+Rows On Tree = 6
 # Indica la cantidad de Objetos decorativos que debe haber
-Quantity Decorations = 30
+Quantity Decorations = 6
 MSG Congrats = Feliz Navidad 2020
 MSG Secondary = Y Prospero Año Nuevo
 
@@ -10,4 +10,4 @@ Tree Character = *
 Decorations Character = o
 Color MSG Congrats = Red
 Color MSG Secondary = Yellow
-Color Tree = Green
+Color Tree = green
